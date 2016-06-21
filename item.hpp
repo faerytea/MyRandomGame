@@ -7,7 +7,6 @@ namespace mrg {
 	typedef unsigned short weapon_type;
 	typedef unsigned short armor_type;
 	typedef unsigned short damage_type;
-
 	class item {
 		protected:
 		unsigned char rank;
@@ -50,7 +49,16 @@ namespace mrg {
 		virtual void use(player &target);
 	};
 
+	class effect {
+		public:
+		virtual void before(player &target, player &from, item &by);
+		virtual bool tic(player &target, player &from, item &by);
+		virtual void after(player &target, player &from, item &by);
+	};
+
+
 	std::string &get_weapon_type_name(weapon_type type);
 	std::string &get_armor_type_name(armor_type type);
+	std::string &get_damage_type_name(damage_type type);
 }
 #endif
